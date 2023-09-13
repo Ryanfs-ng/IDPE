@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Fórum</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1>Fórum IDPE</h1>
+                <img class="foto-logo" src="assets/img/BrasC3A3o_do_Distrito_Federal_Brasil.png">
+            </div>
+
+            <div class="nav-list">
+                <ul>
+                    <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Crie seu tópico</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+                </ul>
+            </div>
+            <div class="login-button">
+                <button><a href="#">Entrar</a></button>
+            </div>
+
+            <div class="mobile-menu-icon">
+                <button onclick="menuShow()"><img class="icon" src="assets/img/menu_white_36dp.svg"></button>
+            </div>
+
+        </nav>
+        
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="#" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Tópicos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+            </ul>
+
+            <div class="login-button">
+                <button><a href="#">Entrar</a></button>
+            </div>
+        </div>
+
+    </header>
+    
+    <script src="assets/js/script.js"></script>
+
+    <div class="barra-topo">
+        <h1>
+            Fóruns Disponíveis
+        </h1>
+    </div>
+    <div class="principal">
+
+        <ol id="Conteudo">
+            <li class="row">
+                <a href="Topico.html">
+                    <h4 class="title">Tópico 1</h4>
+
+                    <div class="bottom">
+                        <p class="Timestamp">
+                            14/09/2023
+                        </p>
+
+                        <p class="comment-count">
+                            4 comentários
+                        </p>
+                    </div>
+                </a>
+            
+            </li>
+            <li class="row">
+                <a href="Topico.html">
+                    <h4 class="title">Tópico 2</h4>
+
+                    <div class="bottom">
+                        <p class="Timestamp">
+                            13/09/2023
+                        </p>
+
+                        <p class="comment-count">
+                            10 comentários
+                        </p>
+                    </div>
+                </a>
+            
+            </li>
+        </ol>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        console.log(threads);
+        var container = document.querySelector('ol');
+        for (let thread of threads) {
+            var html = `
+            <li class="row">
+                <a href="Topico.html?${thread.id}">
+                    <h4 class="title">
+                        ${thread.title}
+                    </h4>
+
+                    <div class="bottom">
+                        <p class="Timestamp">
+                        ${new Date(thread.date).toLocaleString()}
+                        </p>
+
+                        <p class="comment-count">
+                            ${thread.comments.length} comentários
+                        </p>
+                    </div>
+                </a>
+        
+            </li>
+            `
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topico 1</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body id="Conteudo">
+    <div class="barra-topo">
+        <h1>Fórum exemplo</h1>
+    </div>
+    <div class="principal">
+        <div class="header">
+        </div>
+        <h4 class="title">
+            Topico 1
+        </h4>
+        
+        <textarea></textarea>
+        <button>adicione comentário</button>
+        <div class="comments">
+            <div class="comment">
+                <div class="top-comment">
+                    <p class="user">
+                        Moura
+                    </p>
+                    <p class="comment-ts">
+                        13/09/2023
+                    </p>
+                </div>
+                <div class="comment-content">
+                    Comentario aqui
+                </div>
+                <div class="comment">
+                    <div class="top-comment">
+                        <p class="user">
+                            Moura
+                        </p>
+                        <p class="comment-ts">
+                            13/09/2023
+                        </p>
+                    </div>
+                    <div class="comment-content">
+                        Comentario aqui
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="assets/js/script.js"></script>   
+<script>
+    var id = window.location.search.slice(1);
+    var thread = threads.find(t => t.id == id);
+    var header = document.querySelector('.header');
+    var headerHtml = `
+        <h4 class="title">
+            ${thread.title}
+            </h4>
+
+        <div class="bottom">
+            <p class="data">
+                ${new Date(thread.date).toLocaleString()}
+            </p> 
+
+            <p class="comment-count">
+                ${thread.comments.length} comments
+            </p>
+        </div>  
+
+        `
+        header.insertAdjacentHTML('beforeend', headerHtml)
+
+        function addComment(comment){
+            var commentHtml = `
+                    <div class="comment">
+                         <div class="top-comment">
+                             <p class="usuario">
+                                ${comment.author}
+                                </p>
+                                <p class="comentario-ts">
+                                    ${new Date(comment.date).toLocaleString()}
+                                </p>
+
+                            </div>
+                            <div class="comment-content">
+                                ${comment.content}
+                            </div>
+                        </div>
+                    </div> 
+                `
+                    comments.insertAdjacentHTML('beforeend', commentHtml);
+            } 
+
+        var comments = document.querySelector('.comments')
+        for(let comment of thread.comments) {
+            addComment(comment);
+        }
+
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function(){
+            var txt = document.querySelector('textarea');
+            var comment = {
+                content: txt.value,
+                date: Date.now(),
+                author: 'Ryan'
+         }
+         addComment(comment);
+         txt.value = '';
+         thread.comments.push(comment);
+            localStorage.setItem('threads', JSON.stringify(threads));
+        })
+
+
+</script>
+
+</body>
+</html>
